@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eazy Flames</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Open Sans";
+            width: 100vw;
+            height: auto;
+            background-color: #0e0e0e;
+            padding-bottom: 4rem;
+            color: white;
+        }
+
+        header {
+            position: fixed;
+            z-index: 1000;
+            width: 100vw;
+            height: auto;
+            padding: 2rem 0rem;
+            backdrop-filter: blur(7px);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 5rem;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        header h2 {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .book-btn {
+            background-color: #d4af37;
+            color: #0e0e0e;
+            border: none;
+            padding: 0.7rem;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            animation: attention 0.5s infinite alternate;
+        }
+
+        @keyframes attention {
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        .booking-cta {
+            padding-left: 0.5rem;
+        }
+
+        .intro {
+            position: relative;
+            width: 100vw;
+            height: auto;
+            display: grid;
+            place-items: center;
+        }
+
+        #intro-image {
+            position: relative;
+            width: 100%;
+            height: auto;
+            transition: transform 1s ease-in;
+        }
+
+        #intro-image.active {
+            transform: scale(1.05);
+        }
+
+        #overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(14, 14, 14, 0.8);
+            transition: all 1s ease-in;
+        }
+
+        #overlay.active {
+            transform: scale(1.05);
+        }
+
+        .text {
+            position: absolute;
+            left: 10%;
+            top: 20%;
+            transform: translateY(2rem);
+            max-width: 80%;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        .text h1 {
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            font-size: 2.5rem;
+        }
+
+        .line {
+            color: white;
+            display: block;
+        }
+
+        .paragraph {
+            font-size: 0.9rem;
+            padding-top: 2rem;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        .paragraph span {
+            padding-bottom: 0.5rem;
+        }
+
+        #services {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #section-button {
+            border-radius: 20px;
+            padding: 0.7rem 1rem;
+            border: 1px solid #d4af37;
+            background-color: #2b1f04;
+            color: #d4af37;
+            font-weight: bold;
+            transform: translateY(-40%);
+        }
+
+        .services-text {
+            transform: translateY(30%);
+            max-width: 90%;
+        }
+
+        .services-text h2 {
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .section-description {
+            transform: translateY(1.1rem);
+        }
+
+        .cards {
+            width: 100vw;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(7%);
+        }
+
+        #card {
+            position: relative;
+            width: 90%;
+            height: auto;
+            border-radius: 7px;
+        }
+
+        .card-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 7px;
+            transition: all 0.5s ease-in
+        }
+
+        .card-image.active {
+            transform: scale(1.02);
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            border-radius: 7px;
+            background-color: rgba(14, 14, 14, 0.6);
+            transition: all 0.5s ease-in;
+        }
+
+        .card-overlay.active {
+            transform: scale(1.025);
+            backdrop-filter: blur(5px);
+        }
+
+        .scissors-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            left: 5%;
+            top: 5%;
+        }
+
+        .card-text {
+            position: absolute;
+            max-width: 90%;
+            height: auto;
+            left: 5%;
+            top: 70%;
+        }
+
+        .card-text h3 {
+            font-size: 1.5rem;
+            color: white;
+            padding-bottom: 1rem;
+        }
+
+        .card-text span {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        #pricing {
+            transform: translateY(12rem);
+            display: grid;
+            place-items: center;
+            background-color: #1a1a1a;
+            width: 100vw;
+            height: auto;
+            padding-bottom: 2rem;
+        }
+
+        .pricing-cards {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transform: translateY(1rem);
+        }
+
+        .pricing-card {
+            width: 70vw;
+            height: 65vh;
+            background-color: #0e0e0e;
+            border: 2px solid #1a1a1a;
+            border-radius: 5px;
+            padding-top: 5rem;
+            padding-left: 3rem;
+            padding-right: 2rem;
+            box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-card h5 {
+            font-weight: normal;
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .plan-description {
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .plan-price {
+            font-weight: bold;
+            font-size: 1.8rem;
+            transform: translateY(4rem);
+        }
+
+        .pricing-card ul {
+            transform: translate(-1rem, 6rem);
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        ul i {
+            padding-right: 1rem;
+        }
+
+        li {
+            padding-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .golden-tag {
+            z-index: 1;
+            background-color: #d4af37;
+            color: #0e0e0e;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            width: fit-content;
+            padding: 0.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #popular-pricing {
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+            transform: translateY(-3rem);
+        }
+
+        .book-now {
+            position: absolute;
+            background-color: #1a1a1a;
+            color: white;
+            width: 70%;
+            height: 8%;
+            outline: none;
+            border: 1px solid grey;
+            bottom: 7%;
+            left: 15%;
+            right: 15%;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+
+        .book-now:hover {
+            background-color: #313131;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>
+            <span style="color: #d4af37;">E</span>
+            <span>AZY-CUTS</span>
+        </h2>
+
+        <button class="book-btn">
+            <span><i class="fa-regular fa-calendar" style="color: #0e0e0e;"></i></span>
+
+            <span class="booking-cta">BOOK NOW</span>
+        </button>
+    </header>
+
+    <main>
+        <section id="top">
+            <div class="intro">
+                <img src="https://res.cloudinary.com/duarq8azw/image/upload/v1775206716/1000533319_ni1fbi.jpg" id="intro-image">
+
+                <div id="overlay"></div>
+
+                <div class="text" id="intro-text">
+                    <h1>
+                        <span class="line">Sharp Cuts</span>
+                        <span class="line">Clean Lines <em style="color: #d4af37; font-weight: normal;">Confidence</em></span>
+                    </h1>
+
+                    <div class="paragraph">
+                        <span class="line">Experience the art of grooming at its finest.</span>
+                        <span class="line">Premium services at the heart of the city,</span>
+                        <span class="line">blending classic techniques with modern style.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <button id="section-button">OUR SERVICES</button>
+
+            <div class="services-text">
+                <h2 style="text-align: center;">Premium Grooming</h2>
+
+                <div class="section-description">
+                    <span style="color:aliceblue; text-align: center; display: block; font-size: 0.9rem;">Elevate your looks with our expertly crafted services</span>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div id="card">
+                    <img src="https://res.cloudinary.com/duarq8azw/image/upload/v1775224939/1000533779_tyu12o.jpg" class="card-image">
+
+                    <div class="card-overlay"></div>
+
+                    <div class="scissors-icon"><i class="fa-solid fa-scissors" style="color: #d4af37;"></i></div>
+
+                    <div class="card-text">
+                        <h3>Classic Cut</h3>
+
+                        <span>Well-crafted haircut tailored to suit your style and personality.</span>
+                    </div>
+                </div>
+
+                <div id="card">
+                    <img src="https://res.cloudinary.com/duarq8azw/image/upload/v1775224939/1000533781_idohzh.jpg" class="card-image">
+
+                    <div class="card-overlay"></div>
+
+                    <div class="scissors-icon"><i class="fa-solid fa-scissors" style="color: #d4af37;"></i></div>
+
+                    <div class="card-text">
+                        <h3>Style Shaping</h3>
+
+                        <span>Clean, precise styling that sharpens your look and enhances your natural shape.</span>
+                    </div>
+                </div>
+
+                <div id="card">
+                    <img src="https://res.cloudinary.com/duarq8azw/image/upload/v1775224939/1000533780_svrkh7.jpg" class="card-image">
+
+                    <div class="card-overlay"></div>
+
+                    <div class="scissors-icon"><i class="fa-solid fa-scissors" style="color: #d4af37;"></i></div>
+
+                    <div class="card-text">
+                        <h3>Color Tinting</h3>
+
+                        <span>Subtle or bold color treatment that refreshes your style and elevates your overall look.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <button id="section-button" style="transform: translateY(-1.5rem);">SIMPLE PRICING</button>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h5>Basic</h5>
+
+                    <span class="plan-description">Perfect for a quick, sharp refresh.</span>
+
+                    <p class="plan-price">&#8358; 3,000</p>
+
+                    <ul>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Classic Haircut</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Neck Clean-up</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>After-shave Care</li>
+                    </ul>
+
+                    <button class="book-now" style="bottom: 78.5%; height: 2.5rem;">BOOK NOW</button>
+                </div>
+
+                <button class="golden-tag">MOST POPULAR</button>
+
+                <div class="pricing-card" style="border: 2px solid #d4af37;" id="popular-pricing">
+                    <h5>Regular</h5>
+
+                    <span class="plan-description">Our most popular grooming package.</span>
+
+                    <p class="plan-price" style="color: #d4af37;">&#8358; 5,000</p>
+
+                    <ul>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Haircut and Beards</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Beards Sculpting</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Premium Styling</li>
+                    </ul>
+
+                    <button class="book-now" style="background-color: #d4af37; color: black; border: none; font-weight: bold;">BOOK NOW</button>
+                </div>
+
+                <div class="pricing-card" style="transform: translateY(-2rem);">
+                    <h5>Luxury</h5>
+
+                    <span class="plan-description">The ultimate relaxation and grooming</span>
+                    <span class="plan-description">experience.</span>
+
+                    <p class="plan-price">&#8358; 7,000</p>
+
+                    <ul>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Hot Towel Shave</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Deep Relaxation</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Precision Grooming</li>
+                    </ul>
+
+                    <button class="book-now">BOOK NOW</button>
+                </div>
+
+                <div class="pricing-card" style="transform: translateY(-2rem);">
+                    <h5>Junior (Under 13)</h5>
+
+                    <span class="plan-description">Patient, friendly service for kids.</span>
+
+                    <p class="plan-price">&#8358; 2,500</p>
+
+                    <ul>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Kid-Friendly Cut</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Quick &Easy</li>
+                    </ul>
+
+                    <button class="book-now">BOOK NOW</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+</body>
+
+<script>
+    const mainImage = document.getElementById("intro-image");
+    const overlay = document.getElementById("overlay");
+    const introText = document.getElementById("intro-text");
+
+    introText.addEventListener("mouseenter", () => {
+        mainImage.classList.toggle("active");
+
+        overlay.classList.toggle("active");
+    })
+
+    introText.addEventListener("mouseleave", () => {
+        mainImage.classList.remove("active");
+
+        overlay.classList.remove("active");
+    })
+
+    const cardImages = Array.from(document.getElementsByClassName("card-image"));
+
+    const cardOverlay = Array.from(document.getElementsByClassName("card-overlay"));
+
+    cardOverlay.forEach((overlay, index) => {
+        overlay.addEventListener("mouseenter", () => {
+            cardImages[index].classList.toggle("active");
+
+            overlay.classList.toggle("active");
+        })
+
+        overlay.addEventListener("mouseleave", () => {
+            cardImages[index].classList.remove("active");
+
+            overlay.classList.remove("active");
+        })
+    })
+    
+</script>
+
+</html>
