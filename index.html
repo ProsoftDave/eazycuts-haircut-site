@@ -38,12 +38,13 @@
             z-index: 1000;
             width: 100vw;
             height: auto;
-            padding: 2rem 0rem;
+            padding: 1rem 0rem;
             backdrop-filter: blur(7px);
             display: flex;
             flex-direction: row;
             justify-content: center;
-            gap: 5rem;
+            align-items: center;
+            gap: 10rem;
             border: none;
             background-color: rgba(0, 0, 0, 0.3);
         }
@@ -54,11 +55,45 @@
             font-size: 1.5rem;
         }
 
+        .menu {
+            position: fixed;
+            z-index: 3;
+            width: 100vw;
+            height: auto;
+            padding: 1rem 1.8rem;
+            padding-top: 2rem;
+            background-color: #313131;
+            opacity: 0.3;
+            transform: translateY(4rem);
+            top: -100%;
+            transition: all 0.7s ease;
+        }
+
+        .menu.active {
+            top: 0%;
+            opacity: 1;
+        }
+
+        .menu span {
+            display: block;
+            font-size: 1.1rem;
+            padding-bottom: 2rem;
+            transition: color 0.5s ease;
+        }
+
+        .menu span:hover {
+            color: #d4af37;
+        }
+
         .book-btn {
+            position: absolute;
+            z-index: 1;
+            top: 17%;
+            right: 5%;
             background-color: #d4af37;
             color: #0e0e0e;
             border: none;
-            padding: 0.7rem;
+            padding: 0.5rem;
             border-radius: 5px;
             font-weight: bold;
             font-size: 0.8rem;
@@ -250,8 +285,8 @@
             place-items: center;
             background-color: #1a1a1a;
             width: 100vw;
-            height: auto;
-            padding-bottom: 2rem;
+            height: fit-content;
+            padding-bottom: 3rem;
         }
 
         .pricing-cards {
@@ -260,7 +295,7 @@
             justify-content: center;
             align-items: center;
             gap: 2rem;
-            transform: translateY(1rem);
+            transform: translateY(-1rem);
         }
 
         .pricing-card {
@@ -311,18 +346,19 @@
             z-index: 1;
             background-color: #d4af37;
             color: #0e0e0e;
-            border-radius: 20px;
+            border-radius: 10px;
             border: none;
             outline: none;
             width: fit-content;
             padding: 0.5rem;
             font-weight: bold;
             text-align: center;
+            transform: translateY(1rem);
         }
 
         #popular-pricing {
             box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
-            transform: translateY(-3rem);
+            transform: translateY(-2rem);
         }
 
         .book-now {
@@ -338,10 +374,126 @@
             right: 15%;
             font-weight: bold;
             border-radius: 2px;
+            transition: background-color 1s ease;
         }
 
         .book-now:hover {
             background-color: #313131;
+        }
+
+        #booking-section {
+            background-color: #1a1a1a;
+            width: 100vw;
+            height: fit-content;
+            padding-bottom: 2rem;
+            transform: translateY(21%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .booking-header {
+            position: absolute;
+            font-size: 1.5rem;
+            text-align: center;
+            left: 10%;
+            right: 10%;
+            top: 30%;
+        }
+
+        .booking-text {
+            position: absolute;
+            font-size: 0.9rem;
+            text-align: center;
+            left: 5%;
+            right: 5%;
+            top: 40%;
+        }
+        
+        #chat-up {
+            position: absolute;
+            width: 70%;
+            border: none;
+            outline: none;
+            padding: 0.8rem;
+            color: white;
+            background-color: #25d366;
+            left: 15%;
+            right: 15%;
+            top: 60%;
+            font-size: 0.9rem;
+            transition: background-color 0.5s ease;
+        }
+
+        #chat-up:hover {
+            background-color: #21be5c;
+        }
+
+        #chat-up i {
+            color: white;
+            font-size: 1.1rem;
+            padding-right: 1rem;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            width: 100vw;
+            height: auto;
+            transform: translateY(60%);
+            display: grid;
+            place-items: center;
+            gap: 2rem;
+            padding: 3rem 0rem;
+        }
+
+        footer .label{
+            width: 90%;
+        }
+
+        footer .label h6{
+            font-size: 1.2rem;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        footer .label .bottom-text{
+            font-size: 0.9rem;
+            color: #b8c1c7;
+            text-align: center;
+            display: block;
+        }
+
+        footer .headline {
+            padding-bottom: 0.7rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        footer .hours {
+            width: 90%;
+        }
+
+        .hours span {
+            display: block;
+            font-size: 0.9rem;
+            color: #b8c1c7;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .location span {
+            display: block;
+            font-size: 0.9rem;
+            color: #b8c1c7;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
     </style>
@@ -354,17 +506,35 @@
             <span>AZY-CUTS</span>
         </h2>
 
-        <button class="book-btn">
-            <span><i class="fa-regular fa-calendar" style="color: #0e0e0e;"></i></span>
-
-            <span class="booking-cta">BOOK NOW</span>
-        </button>
+        <div><i class="fa-solid fa-bars" style="color: white; font-size: 1.5rem;" id="menu-icon"></i></div>
     </header>
+
+    <div class="menu" id="menu">
+        <span>
+            <i class="fa-solid fa-scissors" style="color: #d4af37; padding-right: 0.5rem;"></i>
+            <a href="#services">Services</a>
+        </span>
+
+        <span>
+            <i class="fa-solid fa-naira-sign" style="color: #d4af37; padding-right: 0.5rem;"></i>
+            <a href="#pricing">Pricing</a>
+        </span>
+
+        <span>
+            <i class="fa-solid fa-phone" style="color: #d4af37; padding-right: 0.5rem;"></i>
+            <a href="#booking-section">Contact</a></span>
+    </div>
 
     <main>
         <section id="top">
             <div class="intro">
                 <img src="https://res.cloudinary.com/duarq8azw/image/upload/v1775206716/1000533319_ni1fbi.jpg" id="intro-image">
+
+                <button class="book-btn">
+                    <span><i class="fa-regular fa-calendar" style="color: #0e0e0e;"></i></span>
+
+                    <a href="#booking-section"><span class="booking-cta">BOOK NOW</span></a>
+                </button>
 
                 <div id="overlay"></div>
 
@@ -443,7 +613,7 @@
             <button id="section-button" style="transform: translateY(-1.5rem);">SIMPLE PRICING</button>
 
             <div class="pricing-cards">
-                <div class="pricing-card">
+                <div class="pricing-card" style="transform: translateY(2rem);">
                     <h5>Basic</h5>
 
                     <span class="plan-description">Perfect for a quick, sharp refresh.</span>
@@ -456,7 +626,7 @@
                         <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>After-shave Care</li>
                     </ul>
 
-                    <button class="book-now" style="bottom: 78.5%; height: 2.5rem;">BOOK NOW</button>
+                    <a href="#booking-section"><button class="book-now">BOOK NOW</button></a>
                 </div>
 
                 <button class="golden-tag">MOST POPULAR</button>
@@ -474,14 +644,13 @@
                         <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Premium Styling</li>
                     </ul>
 
-                    <button class="book-now" style="background-color: #d4af37; color: black; border: none; font-weight: bold;">BOOK NOW</button>
+                    <a href="#booking-section"><button class="book-now" style="background-color: #d4af37; color: black; border: none; font-weight: bold;">BOOK NOW</button></a>
                 </div>
 
                 <div class="pricing-card" style="transform: translateY(-2rem);">
                     <h5>Luxury</h5>
 
-                    <span class="plan-description">The ultimate relaxation and grooming</span>
-                    <span class="plan-description">experience.</span>
+                    <span class="plan-description" style="width: 97%;">The ultimate relaxation and grooming experience.</span>
 
                     <p class="plan-price">&#8358; 7,000</p>
 
@@ -491,7 +660,7 @@
                         <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Precision Grooming</li>
                     </ul>
 
-                    <button class="book-now">BOOK NOW</button>
+                    <a href="#booking-section"><button class="book-now">BOOK NOW</button></a>
                 </div>
 
                 <div class="pricing-card" style="transform: translateY(-2rem);">
@@ -503,19 +672,88 @@
 
                     <ul>
                         <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Kid-Friendly Cut</li>
-                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Quick &Easy</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Quick & Easy</li>
+                        <li><i class="fa-solid fa-check" style="color: #d4af37;"></i>Budget Friendly</li>
                     </ul>
 
-                    <button class="book-now">BOOK NOW</button>
+                    <a href="#booking-section"><button class="book-now">BOOK NOW</button></a>
                 </div>
+            </div>
+        </section>
+
+        <section id="booking-section">
+            <button id="section-button" style="transform: translateY(1.5rem); z-index: 1;">CONNECT WITH US</button>
+
+            <img src="https://res.cloudinary.com/duarq8azw/image/upload/v1775224939/1000533782_xv45n0.jpg" style="width: 100vw; height: auto; position: relative;">
+
+            <div class="booking-overlay" style="background: rgba(14, 14, 14, 0.7); position: absolute; inset: 0;"></div>
+
+            <div>
+                <h4 class="booking-header">Ready for a Fresh Look?</h4>
+
+                <span class="booking-text">Book your appointment today and experience the difference</span>
+
+                <button id="chat-up"><i class="fa-brands fa-whatsapp"></i>CHAT ON WHATSAPP</button>
             </div>
         </section>
     </main>
 
-    <footer></footer>
+    <footer>
+        <div class="label">
+            <h6>
+                <span style="color: #d4af37;">E</span>
+                <span>AZY-CUTS</span>
+            </h6>
+
+            <span class="bottom-text">Premium barbershop experience where style meets precision.</span>
+        </div>
+
+        <div class="hours">
+            <div class="headline">Hours</div>
+
+            <span>Monday - Friday: 9:00 AM - 7:00 PM</span>
+            <span>Saturday: 9:00 AM - 5:00 PM</span>
+            <span>Sunday: Closed</span>
+        </div>
+
+        <div class="location">
+            <div class="headline">Location</div>
+
+            <span>
+                <i class="fa-solid fa-location-dot" style="color: #ff3b30; padding-right: 0.5rem; font-size: 1rem;"></i>
+                MMA 2 LOCAL AIRPORT, IKEJA
+            </span>
+        </div>
+
+        <span style="padding-top: 2rem; font-size: 0.8rem;">&copy; 2026 All Rights Reserved</span>
+        <span style="font-size: 0.8rem; transform: translateY(-1.5rem);">Powered By Chiboobs</span>
+    </footer>
 </body>
 
 <script>
+    const menuIcon = document.getElementById("menu-icon");
+
+    const menu = document.getElementById("menu");
+
+    const navigationItems = Array.from(menu.getElementsByTagName("span"));
+
+    menuIcon.addEventListener("click", () => {
+        menu.classList.toggle("active");
+
+        if (menuIcon.className == "fa-solid fa-bars") {
+            menuIcon.className = "fa-solid fa-xmark";
+        } else {
+            menuIcon.className = "fa-solid fa-bars";
+        }
+    })
+
+    navigationItems.forEach(item => {
+        item.addEventListener("click", () => {
+            menu.classList.remove("active");
+            menuIcon.className = "fa-solid fa-bars";
+        })
+    })
+
     const mainImage = document.getElementById("intro-image");
     const overlay = document.getElementById("overlay");
     const introText = document.getElementById("intro-text");
@@ -548,6 +786,12 @@
 
             overlay.classList.remove("active");
         })
+    })
+
+    const chatNowBtn = document.getElementById("chat-up");
+
+    chatNowBtn.addEventListener("click", () => {
+        window.open("https://wa.me/qr/6B7KFBOBNW4NN1", "_self");
     })
     
 </script>
