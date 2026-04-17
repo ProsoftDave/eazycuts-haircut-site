@@ -895,7 +895,7 @@
                 text-align: center;
                 left: 10%;
                 right: 10%;
-                top: 30%;
+                top: 40%;
             }
 
             .booking-text {
@@ -904,7 +904,7 @@
                 text-align: center;
                 left: 5%;
                 right: 5%;
-                top: 37%;
+                top: 47%;
             }
             
             #chat-up {
@@ -917,7 +917,7 @@
                 background-color: #25d366;
                 left: 32.5%;
                 right: 32.5%;
-                top: 48%;
+                top: 53%;
                 font-size: 0.9rem;
                 transition: background-color 0.5s ease;
             }
@@ -1300,18 +1300,22 @@
         window.open("https://wa.me/qr/6B7KFBOBNW4NN1", "_self");
     })
 
-    const desktopNavs = document.getElementById("page-navigations").getElementsByTagName("a");
+    const desktopNavs = Array.from(document.getElementById("page-navigations").getElementsByTagName("a"));
 
-    Array.from(desktopNavs).forEach(nav => {
+    var clickedNav = null;   
+
+    desktopNavs.forEach(nav => {
         nav.addEventListener("click", () => {
-            nav.style.color = "#d4af37";
-        })
+           nav.style.color = "#d4af37";
 
-        nav.addEventListener("blur", () => {
-            nav.style.color = "white";
+           clickedNav = nav;
+
+            desktopNavs.forEach(nav => {
+                if (nav != clickedNav) {
+                    nav.style.color = "white";
+                }
+            });
         })
     })
-    
 </script>
-
 </html>
